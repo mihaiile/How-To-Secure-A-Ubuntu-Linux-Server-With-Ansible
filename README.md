@@ -29,13 +29,13 @@ From the machine used to connect remotely:
 
 Run the requirements playbook using the user you specified while installing the server:
 
-    ansible-playbook --inventory hosts.yml --ask-pass requirements-playbook.yml
+    ansible-playbook --inventory hosts.yml --ask-pass --ask-become-pass requirements-playbook.yml
 
 &nbsp;
 
 Run the main playbook with the same user above, you specified in the *variables.yml* file:
 
-    ansible-playbook --inventory hosts.yml --ask-pass main-playbook.yml
+    ansible-playbook --inventory hosts.yml --ask-pass --ask-become-pass main-playbook.yml
 
 &nbsp;
 

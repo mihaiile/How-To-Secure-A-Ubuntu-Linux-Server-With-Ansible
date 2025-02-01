@@ -1,25 +1,26 @@
     - name: apt update
+      become: true
       apt:
         update_cache: yes
         upgrade: false
 
-    - name: install sudo via apt
-      apt:
-        name: sudo
-
     - name: create group for ssh users
+      become: true
       group:
         name: '{{ sshusers_group }}'
 
     - name: create group for su users
+      become: true
       group:
         name: '{{ suusers_group }}'
 
     - name: create group for sudo users
+      become: true
       group:
         name: '{{ sudousers_group }}'
 
     - name: update user groups
+      become: true
       user:
         name: "{{ user_name }}"
         groups: "{{ sshusers_group }}, {{ sudousers_group }}, {{ suusers_group }}"
@@ -27,12 +28,14 @@
         shell: /bin/bash
 
     - name: limit sudo to sudousers groups
+      become: true
       lineinfile:
         path: /etc/sudoers
         regexp: '^%{{ sudousers_group }}'
         line: '%{{ sudousers_group }}   ALL=(ALL:ALL) ALL'
 
     - name: limit who can use su
+      become: true
       register: sustd
       shell: |
         sudo dpkg-statoverride --update --add root {{ suusers_group }} 4750 /bin/su
@@ -41,6 +44,7 @@
         - '"exist" not in sustd.stderr' # this has to be changed: unsure how to skip the "already exist" error in other languages
 
     - name: passwordless sudo for new user
+      become: true
       lineinfile:
         path: /etc/sudoers
         regexp: '^{{ user_name }}'

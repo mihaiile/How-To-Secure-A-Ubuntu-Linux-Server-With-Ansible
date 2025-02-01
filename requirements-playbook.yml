@@ -1,5 +1,5 @@
     - name: Requirements-Playbook
-      hosts: ansible-secured-server
+      hosts: ansible_secured_server
       remote_user: "{{ user_name }}"
       vars_files: ./group_vars/variables.yml
 

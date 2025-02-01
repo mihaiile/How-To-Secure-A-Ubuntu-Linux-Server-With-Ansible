@@ -28,6 +28,7 @@
         mode: '640'
 
     - name: add user to mail group
+      become: true
       user:
         name: "{{ user_name }}"
         groups: "msmtp"
@@ -52,7 +53,6 @@
         create: yes
 
     - name: send a testmail
-      become: true
       shell: echo "Testmail content. Success." | mail -s "Testmail subject - ansible playbook" {{ mail_to }}
       #shell: echo "Hello World" | msmtp -d {{ mail_to }}
       #Test sending a mail to root
