@@ -1,6 +1,6 @@
     - name: Requirements-Playbook
-      hosts: debian-server
-      remote_user: root
+      hosts: ansible-secured-server
+      remote_user: "{{ user_name }}"
       vars_files: ./group_vars/variables.yml
 
       roles:

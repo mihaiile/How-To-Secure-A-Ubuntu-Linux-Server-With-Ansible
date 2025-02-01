@@ -1,5 +1,5 @@
     - name: Main-Playbook
-      hosts: debian-server
+      hosts: ansible-secured-server
       remote_user: "{{ user_name }}"
       gather_facts: yes
       vars_files: ./group_vars/variables.yml

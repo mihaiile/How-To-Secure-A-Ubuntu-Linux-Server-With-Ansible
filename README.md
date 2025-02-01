@@ -27,13 +27,13 @@ From the machine used to connect remotely:
 
 &nbsp;
 
-Run the requirements playbook using the user/password you specified while installing the server:
+Run the requirements playbook using the user you specified while installing the server:
 
     ansible-playbook --inventory hosts.yml --ask-pass requirements-playbook.yml
 
 &nbsp;
 
-Run the main playbook with the new users password you specified in the *variables.yml* file:
+Run the main playbook with the same user above, you specified in the *variables.yml* file:
 
     ansible-playbook --inventory hosts.yml --ask-pass main-playbook.yml
 
@@ -58,11 +58,10 @@ The playbook uses most of the settings from ["How To Secure A Linux Server"](htt
 &nbsp;
 
 ## Changes made to the original installation after running the ansible playbooks
-- groups created for *sshusers*, *sudousers* and *suusers*
-- new user created with the name specified in *variables.yml* and added to groups
+- groups created for *sshusers*, *sudousers* and *suusers*; user added to groups
 - use of sudo limited to sudousers group
 - use of su limited to suusers group
-- passwordless sudo enabled for the new user
+- passwordless sudo enabled for the user if specified in the *variables.yml* 
 - SSH public key added to authorized_keys file
 
 ### Packages
