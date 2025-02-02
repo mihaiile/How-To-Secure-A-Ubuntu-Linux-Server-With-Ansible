@@ -28,26 +28,7 @@
         name: lynis
         state: present
 
-    - name: Remove useless packages from the cache
-      apt:
-        autoclean: yes
-
-    - name: Remove dependencies that are no longer required
-      apt:
-        autoremove: yes
-
-    - name: Remove dependencies that are no longer required and purge their configuration files
-      apt:
-        autoremove: yes
-        purge: true
-
-    - name: Run the equivalent of "apt-get clean" as a separate step
-      apt:
-        clean: yes
-
-    - name: update and run first lynis audit
+    - name: update lynis
       become: true
       shell: |
         lynis update info
-        lynis audit system | ansi2html -l > /tmp/lynis-report.html 
-        echo "First Lynis report see attachment" | mail -A /tmp/lynis-report.html -s "Lynis report" {{ mail_to }}

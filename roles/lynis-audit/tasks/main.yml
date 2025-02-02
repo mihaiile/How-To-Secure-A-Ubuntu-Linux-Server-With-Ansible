@@ -1,0 +1,6 @@
+
+    - name: run first lynis audit
+      become: true
+      shell: |
+        lynis audit system | ansi2html -l > /tmp/lynis-report.html 
+        echo "First Lynis report see attachment" | mail -A /tmp/lynis-report.html -s "Lynis report" {{ mail_to }}
