@@ -81,7 +81,6 @@ Installed packages are:
 - msmtp
 - msmtp-mta
 - mailutils
-- bsd-mailx
 - clamav
 - clamav-freshclam
 - clamav-daemon
