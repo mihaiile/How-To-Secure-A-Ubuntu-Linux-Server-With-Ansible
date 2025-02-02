@@ -7,6 +7,7 @@
           defaults
           port {{ mail_port }}
           tls on
+          tls_starttls off
           tls_trust_file /etc/ssl/certs/ca-certificates.crt
           account email
           host {{ mail_smtp_server }}
