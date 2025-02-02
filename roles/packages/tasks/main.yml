@@ -5,6 +5,7 @@
         upgrade: yes
 
     - name: Accept msmtp AppArmor before installing
+      become: true
       ansible.builtin.debconf:
         name: msmtp
         question: msmtp/apparmor

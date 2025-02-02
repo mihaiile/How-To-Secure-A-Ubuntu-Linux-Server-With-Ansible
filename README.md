@@ -35,13 +35,13 @@ Run the requirements playbook using the user you specified while installing the 
 
 Run the main playbook with the same user above, you specified in the *variables.yml* file:
 
-    ansible-playbook --inventory hosts.yml --ask-pass --ask-become-pass main-playbook.yml
+    ansible-playbook --inventory hosts.yml --ask-pass --ask-become-pass --key-file /PATH/TO/SSH/KEY main-playbook.yml
 
 &nbsp;
 
 If you need to run the playbooks multiple times remember to use the SSH key and the new SSH port:
 
-    ansible-playbook --inventory hosts.yml -e ansible_ssh_port=SSH_PORT --key-file /PATH/TO/SSH/KEY main-playbook.yml
+    ansible-playbook --inventory hosts.yml -e ansible_ssh_port=SSH_PORT --ask-become-pass --key-file /PATH/TO/SSH/KEY main-playbook.yml
 
 &nbsp;
 
