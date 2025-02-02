@@ -30,11 +30,11 @@
 
     - name: chmod mail log file
       become: true
-      file:
+      ansible.builtin.file:
         path: /var/log/msmtp
+        state: touch
         group: msmtp
         mode: '660'
-        create: true
 
     - name: add user to mail group
       become: true
@@ -58,8 +58,14 @@
       become: true
       lineinfile:
         path: /etc/mail.rc
-        line: 'set mta=/usr/bin/msmtp'
+        line: 'set sendmail="/usr/bin/msmtp -t"'
         create: yes
+
+    - name: Force all notified handlers to run at this point, not waiting for normal sync points
+      ansible.builtin.meta: flush_handlers
+  
+    - name: reset ssh connection to allow user changes to affect 'current login user'
+      ansible.builtin.meta: reset_connection
 
     - name: send a testmail
       shell: echo "Testmail content. Success." | mail -s "Testmail subject - ansible playbook" {{ mail_to }}
