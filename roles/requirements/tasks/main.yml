@@ -27,6 +27,12 @@
         append: true
         shell: /bin/bash
 
+    - name: chmod sudoers.d
+      become: true
+      ansible.builtin.file:
+        path: /etc/sudoers.d
+        mode: '750'
+
     - name: limit sudo to sudousers groups
       become: true
       lineinfile:

@@ -45,6 +45,12 @@
           - mailutils
         state: present
 
+    - name: Remove mail "bsd-mailx" package
+      become: true
+      apt:
+        name: bsd-mailx
+        state: absent
+
     - name: install rkhunter and clamav antivirus related packages
       become: true
       apt:

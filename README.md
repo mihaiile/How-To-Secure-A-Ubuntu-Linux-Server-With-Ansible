@@ -35,11 +35,11 @@ Run the requirements playbook using the user you specified while installing the 
 
 Run the main playbook with the same user above, you specified in the *variables.yml* file:
 
-    ansible-playbook --inventory hosts.yml --ask-pass --ask-become-pass --key-file /PATH/TO/SSH/KEY main-playbook.yml
+    ansible-playbook --inventory hosts.yml -e ansible_ssh_port=SSH_PORT --ask-pass --ask-become-pass --key-file /PATH/TO/SSH/KEY main-playbook.yml
 
 &nbsp;
 
-If you need to run the playbooks multiple times remember to use the SSH key and the new SSH port:
+If you need to run the playbooks multiple times remember to use the SSH key and the new SSH port. '--ask-pass should not be needed anymore':
 
     ansible-playbook --inventory hosts.yml -e ansible_ssh_port=SSH_PORT --ask-become-pass --key-file /PATH/TO/SSH/KEY main-playbook.yml
 
@@ -104,7 +104,7 @@ PSAD and Fail2Ban is configured according to "How To Secure A Linux Server" guid
 
 ### Lynis
 Lynis is configured according to "How To Secure A Linux Server" guide and will run an audit + send the report as an attachment to your mail address configured in *variables.yml*.
-Current Lynis rating is 77.
+Current Lynis rating is 75.
 
 ### Mail
 For mailing I chose msmtp with the help from [Decatec's guide](https://decatec.de/linux/linux-einfach-e-mails-versenden-mit-msmtp/). This will send a testmail.

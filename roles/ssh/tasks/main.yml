@@ -73,3 +73,9 @@
         awk '$5 >= 3071' /etc/ssh/moduli | sudo tee /etc/ssh/moduli.tmp
         mv /etc/ssh/moduli.tmp /etc/ssh/moduli
       notify: restart ssh service
+
+    - name: Reboot the machine...
+      become: true
+      shell: "sleep 5 && reboot"
+      async: 1
+      poll: 0
