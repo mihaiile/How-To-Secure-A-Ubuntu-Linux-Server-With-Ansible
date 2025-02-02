@@ -4,14 +4,6 @@
         update_cache: yes
         upgrade: yes
 
-    - name: Accept msmtp AppArmor before installing
-      become: true
-      ansible.builtin.debconf:
-        name: msmtp
-        question: msmtp/apparmor
-        value: 'true'
-        vtype: select
-
     - name: install packages
       become: true
       apt:
@@ -25,17 +17,49 @@
           - unattended-upgrades
           - apt-listchanges
           - apticron
+        state: present
+
+    - name: install ufw, psad, fail2ban packages
+      become: true
+      apt:
+        name: 
           - ufw
           - psad
           - fail2ban
+        state: present
+
+    - name: accept msmtp AppArmor before installing
+      become: true
+      ansible.builtin.debconf:
+        name: msmtp
+        question: msmtp/apparmor
+        value: 'true'
+        vtype: select
+
+    - name: install mail related packages
+      become: true
+      apt:
+        name: 
           - msmtp
           - msmtp-mta
           - mailutils
           - bsd-mailx
+        state: present
+
+    - name: install rkhunter and clamav antivirus related packages
+      become: true
+      apt:
+        name: 
+          - rkhunter
           - clamav
           - clamav-freshclam
           - clamav-daemon
-          - rkhunter
+        state: present
+
+    - name: install audit packages
+      become: true
+      apt:
+        name: 
           - auditd
           - audispd-plugins
         state: present

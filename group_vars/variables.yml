@@ -3,6 +3,8 @@
 sshpub_location: SSH_PUBKEY_HERE #the full path to your SSH public key ( e.g. /Users/username/.ssh/id_ed25519.pub )
 user_name: USERNAME_HERE #username to be used, should exist already
 ssh_port: 55899 #port number for ssh (see https://it-tools.tech/random-port-generator)
+
+## Mail configurations (make sure a dedicated accound is used just for this purpose, just in case user/pass is somehow stolen from this file or server's '/etc/msmtprc' file)
 mail_username: mailfrom@example.com # username for logging in
 mail_from: mailfrom@example.com #the mail address where mails are sent from 
 mail_smtp_server: smtp.example.com #mail server, e.g. smtp.gmail.com
@@ -13,7 +15,14 @@ mail_to: mailto@example.com #the mail address where mails should be sent to
 
 # Optional variables which already have a default value
 
+## Groups configured for the user_name
 sshusers_group: sshusers
 suusers_group: suusers
-sudousers_group: sudousers # Tip: Ubuntu already has a 'sudo' group, so maybe re-use it?
+sudousers_group: sudousers # Tip: Ubuntu already has a 'sudo' group, so why not re-use it?
+
+## Enable/disable passwordless sudo for the user_name
 passwordless_sudo: false
+
+## PSAD - configuring the email alert level and log file
+psad_email_alert_danger_level: 3 # by default 3 is used in case not defined here
+psad_syslog_file: /var/log/syslog # by default '/var/log/syslog' is used in case not defined here

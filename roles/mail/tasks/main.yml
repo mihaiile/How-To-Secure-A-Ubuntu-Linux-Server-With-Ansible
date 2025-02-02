@@ -28,6 +28,14 @@
         group: msmtp
         mode: '640'
 
+    - name: chmod mail log file
+      become: true
+      file:
+        path: /var/log/msmtp
+        group: msmtp
+        mode: '660'
+        create: true
+
     - name: add user to mail group
       become: true
       user:
