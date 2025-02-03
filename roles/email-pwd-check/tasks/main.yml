@@ -1,0 +1,15 @@
+
+    - name: Prompt e-mail password if necessary
+      when: mail_pw is undefined or mail_pw == '' or mail_pw == None
+      block:
+        - name: Conditionally prompt for e-mail password
+          ansible.builtin.pause:
+            prompt: "Password for e-mail account {{ mail_username }}"
+            echo: false
+          register: password_prompt
+          no_log: true
+
+        - name: Set mail_pw
+          ansible.builtin.set_fact:
+            mail_pw: "{{ password_prompt.user_input }}"
+          no_log: true

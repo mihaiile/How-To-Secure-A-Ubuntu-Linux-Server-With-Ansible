@@ -8,12 +8,15 @@ ssh_port: 55899 #port number for ssh (see https://it-tools.tech/random-port-gene
 mail_username: mailfrom@example.com # username for logging in
 mail_from: mailfrom@example.com #the mail address where mails are sent from 
 mail_smtp_server: smtp.example.com #mail server, e.g. smtp.gmail.com
-mail_pw: PASSWORD_HERE #password for the mail_from mail address
 mail_port: 587 #the port where mails are sent to the mail server, e.g. 587
 mail_to: mailto@example.com #the mail address where mails should be sent to
 
 
 # Optional variables which already have a default value
+
+#Leave empty in order to be prompted for password for the mail_username e-mail address
+#Uncomment and set a password to avoid being prompted during ansible playbook execution
+#mail_pw: PASSWORD_HERE #password for the mail_username mail address
 
 ## Groups configured for the user_name
 sshusers_group: sshusers

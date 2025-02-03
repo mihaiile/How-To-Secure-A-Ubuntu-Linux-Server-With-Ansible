@@ -5,6 +5,7 @@
       vars_files: ./group_vars/variables.yml
 
       roles:
+        - email-pwd-check
         - packages
         - password-quality
         - unattended-upgrades
